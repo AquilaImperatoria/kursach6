@@ -1,5 +1,6 @@
 package rtu.mirea.kursach6.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -7,37 +8,32 @@ import javax.persistence.*;
 @Entity
 @Data
 @Table(name = "messages")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Message {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer messageID;
-    private String chatCODE;
-    private String user;
+    @SequenceGenerator(name = "messages_messageid_seq", sequenceName = "messages_messageid_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "messages_messageid_seq")
+    private Integer messageid;
+    private String chatcode;
+    private String usernam;
     private String content;
 
-    public Integer getMessageID() {
-        return messageID;
+    public Integer getMessageid() {
+        return messageid;
     }
 
-    public void setMessageID(Integer messageID) {
-        this.messageID = messageID;
+    public void setMessageid(Integer messageid) {
+        this.messageid = messageid;
     }
 
-    public String getChatCODE() {
-        return chatCODE;
+    public String getChatcode() {
+        return chatcode;
     }
 
-    public void setChatCODE(String chatCODE) {
-        this.chatCODE = chatCODE;
+    public void setChatcode(String chatcode) {
+        this.chatcode = chatcode;
     }
 
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
 
     public String getContent() {
         return content;
@@ -45,5 +41,13 @@ public class Message {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getUsernam() {
+        return usernam;
+    }
+
+    public void setUsernam(String usernam) {
+        this.usernam = usernam;
     }
 }

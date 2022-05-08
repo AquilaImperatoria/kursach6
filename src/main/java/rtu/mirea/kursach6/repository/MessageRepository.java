@@ -6,6 +6,6 @@ import rtu.mirea.kursach6.model.Message;
 import java.util.List;
 
 public interface MessageRepository extends JpaRepository<Message, Integer> {
-    List<Message> getByChatCODE(String chatCODE);
-    List<Message> deleteByChatCODE(String chatCODE);
+    List<Message> getByChatcode(String chatcode);
+    List<Message> deleteByChatcode(String chatcode);
 }

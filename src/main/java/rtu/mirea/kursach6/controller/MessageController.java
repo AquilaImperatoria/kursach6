@@ -14,10 +14,15 @@ import java.util.List;
 public class MessageController {
     @Autowired
     MessageRepository messageRepository;
-    /*@Autowired
+    @Autowired
     MessageService messageService;
 
 
+    @PostMapping(value = "/newchat")
+    public ResponseEntity<?> newChat(@RequestBody Message message) {
+        messageService.createChat(message);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
     @PostMapping(value = "/messages")
     public ResponseEntity<?> create(@RequestBody Message message) {
         messageService.create(message);
@@ -30,13 +35,13 @@ public class MessageController {
         return messages != null &&  !messages.isEmpty()
                 ? new ResponseEntity<>(messages, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }*/
-    @GetMapping("/messages/getchatCODE")
-    public ResponseEntity<List<Message>> getMessagesByChatCODE(@RequestParam String chatCODE) {
-        return new ResponseEntity<List<Message>>(messageRepository.getByChatCODE(chatCODE), HttpStatus.OK);
+    }
+    @GetMapping("/messages/getchatcode")
+    public ResponseEntity<List<Message>> getMessagesByChatcode(@RequestParam String chatcode) {
+        return new ResponseEntity<List<Message>>(messageRepository.getByChatcode(chatcode), HttpStatus.OK);
     }
     @GetMapping("/messages/delchatCODE")
-    public ResponseEntity<List<Message>> deleteMessagesByChatCODE(@RequestParam String chatCODE) {
-        return new ResponseEntity<List<Message>>(messageRepository.deleteByChatCODE(chatCODE), HttpStatus.OK);
+    public ResponseEntity<List<Message>> deleteMessagesByChatCODE(@RequestParam String chatcode) {
+        return new ResponseEntity<List<Message>>(messageRepository.deleteByChatcode(chatcode), HttpStatus.OK);
     }
 }

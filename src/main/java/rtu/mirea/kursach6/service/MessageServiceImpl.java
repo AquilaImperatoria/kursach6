@@ -1,7 +1,6 @@
 package rtu.mirea.kursach6.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import rtu.mirea.kursach6.model.Message;
 import rtu.mirea.kursach6.repository.MessageRepository;
@@ -16,6 +15,10 @@ public class MessageServiceImpl implements MessageService{
 
     @Override
     public void create(Message message) {
+        messageRepository.save(message);
+    }
+    @Override
+    public void createChat(Message message) {
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 + "0123456789"
                 + "abcdefghijklmnopqrstuvxyz";
@@ -28,7 +31,8 @@ public class MessageServiceImpl implements MessageService{
                     .charAt(index));
         }
         String num = sb.toString();
-        message.setChatCODE(num);
+        message.setChatcode(num);
+        message.setContent("Your chat code is "+num+"!");
         messageRepository.save(message);
     }
 
