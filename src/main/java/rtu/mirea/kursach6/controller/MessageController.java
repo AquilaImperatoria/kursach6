@@ -19,9 +19,9 @@ public class MessageController {
 
 
     @PostMapping(value = "/newchat")
-    public ResponseEntity<?> newChat(@RequestBody Message message) {
-        messageService.createChat(message);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<?> newChat(@RequestParam String usernam) {
+        String response = messageService.createChat(usernam);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
     @PostMapping(value = "/messages")
     public ResponseEntity<?> create(@RequestBody Message message) {

@@ -18,7 +18,7 @@ public class MessageServiceImpl implements MessageService{
         messageRepository.save(message);
     }
     @Override
-    public void createChat(Message message) {
+    public String createChat(String name) {
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 + "0123456789"
                 + "abcdefghijklmnopqrstuvxyz";
@@ -31,9 +31,12 @@ public class MessageServiceImpl implements MessageService{
                     .charAt(index));
         }
         String num = sb.toString();
+        Message message = new Message();
         message.setChatcode(num);
-        message.setContent("Your chat code is "+num+"!");
+        message.setUsernam(name);
+        message.setContent(name+", your chat code is "+num+"!");
         messageRepository.save(message);
+        return num;
     }
 
     @Override

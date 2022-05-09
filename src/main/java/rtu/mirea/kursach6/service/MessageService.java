@@ -7,5 +7,5 @@ import java.util.List;
 public interface MessageService {
     void create(Message message);
     List<Message> readAll();
-    void createChat(Message message);
+    String createChat(String name);
 }
