@@ -1,12 +1,12 @@
 <?php
-if ( ! empty($_POST['name'])){
-    $name = $_POST['name'];
-}
-    $url = 'http://localhost:8080/newchat';
+session_start();
+$name = $_SESSION['name'];
+var_dump($name);
+$url = 'http://localhost:8080/newchat';
 $data = [
     'usernam'      => $name
 ];
-httpPost($url, $data);
+
 function httpPost($url, $data)
 {
     $curl = curl_init($url);
@@ -18,5 +18,6 @@ function httpPost($url, $data)
     var_dump($response);
     return $response;
 }
-
+$_SESSION['chatcode'] = httpPost($url, $data);
+header( "Location: http://localhost:81/chat.php" );
 ?>

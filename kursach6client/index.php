@@ -1,19 +1,16 @@
-<html>
-<body>
-
-<form name='form' method='post' action="chat.php">
+<?php
+session_start();
+if (isset($_SESSION['alerts']))   {echo '<div class="alert">' . $_SESSION['alerts'] . '</div>';$_SESSION['alerts'] = null;}
+?>
+<form name='form' method='post' action="user_check.php">
 
     Name: <input type="text" name="name" id="name" ><br/>
+    Password: <input type="password" name="password" id="password" ><br/>
 
     <input type="submit" name="submit" value="Submit">
 
 </form>
-<form name='form' method='post' action="newchat.php">
 
-    Name: <input type="text" name="name" id="name" ><br/>
-
-    <input type="submit" name="submit" value="Submit">
-
-</form>
-</body>
-</html>
+<a href="/register.php">
+    <input type="submit" value="Зарегистрироваться"/>
+</a>
