@@ -23,7 +23,7 @@ public class MessageController {
         String response = messageService.createChat(usernam);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
-    @PostMapping(value = "/messages")
+    @PostMapping(value = "/messages/new")
     public ResponseEntity<?> create(@RequestBody Message message) {
         messageService.create(message);
         return new ResponseEntity<>(HttpStatus.CREATED);
