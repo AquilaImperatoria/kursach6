@@ -8,6 +8,5 @@
 
     <input type="submit" name="submit" value="Submit">
 
-</form><?php
-
-?>
+</form>
+<a href="index.php"><input type="submit" value="Выйти из аккаунта"/></a>

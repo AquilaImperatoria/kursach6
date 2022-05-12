@@ -5,11 +5,8 @@ session_start();
 $name = $_SESSION['name'];
 $code = $_SESSION['chatcode'];
 $message = $_GET['message'];
-
-if( $message!="" )
-{
-    if (message != "0_0_0_0_0_0_0_0")
-    {
+if( $message!="" ) {
+    if ($message !== "`") {
         $url = 'http://localhost:8080/messages/new';
         $data = array(
             'usernam' => $name,
@@ -29,6 +26,7 @@ if( $message!="" )
             curl_exec($curl);
             curl_close($curl);
         }
+
         httpPost($url, $content);
     }
     function httpGet($url, $content)
@@ -42,17 +40,19 @@ if( $message!="" )
         curl_close($curl);
         return $result;
     }
-    $content = array ('chatcode' => $code);
+
+    $content = array('chatcode' => $code);
     $result = httpGet($url, $content);
     $i = 0;
     $result = json_decode($result);
-    while ($i < sizeof($result))
-    {
-        echo "<p>".$result[$i]->usernam.": ".$result[$i]->content."</p>";
-        $i = $i +1;
+    while ($i < sizeof($result)) {
+        echo "<p>" . $result[$i]->usernam . ": " . $result[$i]->content . "</p>";
+        $i = $i + 1;
     }
+
+
 }
-
-
-
 ?>
+
+
+
